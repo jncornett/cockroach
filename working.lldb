@@ -1,0 +1,2 @@
+command script import ./scripts/cockroach_entry.py
+script cockroach_entry.initialize()
