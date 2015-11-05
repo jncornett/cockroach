@@ -31,25 +31,7 @@ def main():
         with Spinner(controller, io, THREAD_JOIN_TIMEOUT) as spinner:
             # FIXME make host/port configurable
             cherrypy.quickstart(Helper(io))
-            # server = Server(("localhost", 8080), io)
-            # while True:
-            #     server.handle_request()
 
-        # server_thread = threading.Thread(
-        #     target=cherrypy.quickstart, args=(Server(io),))
-        # server_thread.daemon = True
-        # server_thread.start()
-
-        # from roach.adapter import ControllerAdapter
-        # ca = ControllerAdapter(controller)
-
-        # print(ca.send("launch"))
-        # print(ca.send("evaluate", "1+1"))
-        # t = threading.Thread(target=ca.send, args=("command", "step"))
-        # t.start()
-        # t.join()
-        # spinner = Spinner(controller, io, THREAD_JOIN_TIMEOUT)
-        # spinner.run()
 
 
 if __name__ == "__main__":
