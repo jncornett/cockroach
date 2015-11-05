@@ -13,5 +13,8 @@ setup(
             "roach = roach.entry_point:main",
             "roach_webapp = roach_webapp.app:main"
         ]
+    },
+    package_data={
+        "": ["*.js", "*.css", "*.html"]
     }
 )

@@ -1,17 +1,13 @@
 import cherrypy
 from pkg_resources import resource_filename
 
+
 STATIC_ROOT = resource_filename(__name__, "static")
-print STATIC_ROOT
 
 config = {
-    "/": {
-        "tools.staticdir.root": ""
-    },
-
     "/static": {
         "tools.staticdir.on": True,
-        "tools.staticdir.dir": ""
+        "tools.staticdir.dir": STATIC_ROOT
     }
 }
 
@@ -20,14 +16,9 @@ class App(object):
     def __init__(self):
         pass
 
-    @cherrypy.expose
-    def index(self):
-        pass
-
 
 def main():
-    cherrypy.config.update(config)
-    cherrypy.quickstart(App())
+    cherrypy.quickstart(App(), "/", config)
 
 
 if __name__ == "__main__":
