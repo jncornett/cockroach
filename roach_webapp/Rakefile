@@ -1,0 +1,37 @@
+rule ".js" => ".coffee" do |t|
+  sh "coffee -c -o #{t.name.pathmap("%d")} #{t.source}"
+end
+
+rule ".html" => ".jade" do |t|
+  sh "jade -P < #{t.source} > #{t.name}"
+end
+
+rule ".css" => ".less" do |t|
+  sh "lessc #{t.source} #{t.name}"
+end
+
+COFFEE_SOURCES = Rake::FileList.new("**/*.coffee")
+JADE_SOURCES = Rake::FileList.new("**/*.jade")
+LESS_SOURCES = Rake::FileList.new("**/*.less")
+
+ALL_SOURCES = (
+  COFFEE_SOURCES.ext(".js") +
+  JADE_SOURCES.ext(".html") +
+  LESS_SOURCES.ext(".css")
+)
+
+task :clean do
+  rm_rf ALL_SOURCES
+end
+
+task :compile => ALL_SOURCES
+
+DOCUMENTATION_SOURCES = Rake::FileList.new(
+  "**/*.coffee", "**/*.less")
+
+directory "doc"
+task :documentation => "doc" do
+  sh "docco -o doc #{DOCUMENTATION_SOURCES}"
+end
+
+task :default => :compile

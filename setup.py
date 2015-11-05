@@ -10,7 +10,8 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "roach = roach.entry_point:main"
+            "roach = roach.entry_point:main",
+            "roach_webapp = roach_webapp.app:main"
         ]
     }
 )

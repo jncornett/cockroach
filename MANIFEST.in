@@ -1,0 +1,1 @@
+recursive-include roach_webapp/static *.js *.css *.html
